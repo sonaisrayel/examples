@@ -50,8 +50,6 @@ const newOne = async () => {
     await waiter()
 }
 
-
-
 // (()=> {
 //     console.log(111111)
 // })()
