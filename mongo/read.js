@@ -19,46 +19,42 @@ const establishConnection = async () => {
 };
 
 
-
-
 async function find() {
 
     await establishConnection();
     const exampleCollection = dbConnection.db(MONGO_DB).collection('books');
 
     const data = await exampleCollection.find({}).toArray();
+    return data
+};
+
+
+async function findOne() {
+    const exampleCollection = dbConnection.db(MONGO_DB).collection('books');
+    const data = await exampleCollection.findOne({ _id: 3 });
     console.log(data);
     return data
 };
 
-find()
-
 
 async function findWithProjection() {
-    await establishConnection();
-    const exampleCollection = dbConnection.db(MONGO_DB).collection('students');
-   // const projection = { name: 1 };
-    const projection = { _id: 0, name: 1 };
+    const exampleCollection = dbConnection.db(MONGO_DB).collection('books');
+    //const projection = { title: 1 };
+    const projection = { _id: 0, title: 1 };
 
-    const cursor = exampleCollection.find().project(projection);
-    for await (const doc of cursor) {
-      console.dir(doc);
-    }
+    const cursor =  await exampleCollection.find().project(projection).toArray();
+    console.log(cursor);
 };
 
 
 async function distict() {
-    await establishConnection();
-    const exampleCollection = dbConnection.db(MONGO_DB).collection('students');
-    const data = await exampleCollection.distinct("location");
-    for (const doc of data) {
-        console.log(doc);
-    }
+    const collection = dbConnection.db(MONGO_DB).collection('books');
+    const data = await collection.distinct("title");
+    console.log(data);
 }
 
 
 async function ne() {
-    await establishConnection();
     const query = { location: { $ne: "Gyumri" } };
 
     const exampleCollection = dbConnection.db(MONGO_DB).collection('students');
@@ -69,16 +65,17 @@ async function ne() {
 
 
 async function sort() {
-
-    await establishConnection();
-    const sort = { name:  -1};
-    const exampleCollection = dbConnection.db(MONGO_DB).collection('students');
-    const data = exampleCollection.find({}).sort(sort).limit(2);
-    for await (const doc of data) {
-        console.log(doc);
-    }
+    const sort = { _id: -1 };
+    const exampleCollection = dbConnection.db(MONGO_DB).collection('books');
+    const data = await exampleCollection.find({}).sort(sort).limit(3).toArray();    
 }
 
+
+
+(async () => {
+    await establishConnection()
+    await sort()
+})()
 
 
 
