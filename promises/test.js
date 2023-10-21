@@ -19,7 +19,7 @@ function read2() {
                 return reject('err in read2')
             }
             //throw new Error(result)
-            resolve(Number(result))
+            resolve(result)
         })
     })
 }
@@ -33,34 +33,37 @@ function read2() {
 
 async function result () {
     const [data1,data2] =  await Promise.all( [read1(),read2()]);
-    return data1
-}
+   // const [dd] =   await read2()
 
+    //return data1
+}
 
 async function waiter(){
     setTimeout(()=> {
-        console.log(11111)
+        console.log(result());
     },1000)
 };
 
+waiter()
 
 
 
-const newOne = async () => {
-    await waiter()
-}
+
+// const newOne = async () => {
+//     await waiter()
+// }
 
 // (()=> {
 //     console.log(111111)
 // })()
 
-(async () => {
-    console.log(11123123)
-})();
+// (async () => {
+//     console.log(11123123)
+// })();
 
-(async () => {
-    await newOne()
-})();
+// (async () => {
+//     await newOne()
+// })();
 
 
 
