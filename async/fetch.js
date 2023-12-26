@@ -8,12 +8,19 @@ function fetchDataFromAPI(url) {
         return response.json();
       });
   }
-  
+
   function fetchMultipleAPIs(apiUrls) {
     const promises = apiUrls.map(url => fetchDataFromAPI(url));
+      console.log(promises,'promises')
     return Promise.all(promises);
   }
-  
+
+
+
+
+
+
+
   // Example usage:
   const apiUrls = [
     'https://jsonplaceholder.typicode.com/posts/4',
@@ -21,9 +28,6 @@ function fetchDataFromAPI(url) {
     'https://jsonplaceholder.typicode.com/posts/6'
   ];
 
-
- 
-  
   fetchMultipleAPIs(apiUrls)
     .then(results => {
       console.log('Combined Results:', results);
@@ -31,4 +35,5 @@ function fetchDataFromAPI(url) {
     .catch(error => {
       console.log('Error:', error.message);
     });
-  
+
+

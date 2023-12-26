@@ -6,7 +6,7 @@ function asyncOperation1() {
       }, 1000);
     });
   }
-  
+
   function asyncOperation2() {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -15,7 +15,7 @@ function asyncOperation1() {
       }, 2000);
     });
   }
-  
+
   function asyncOperation3() {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -24,7 +24,7 @@ function asyncOperation1() {
       }, 1500);
     });
   }
-  
+
   async function performOperations() {
     try {
       await asyncOperation1();
@@ -35,6 +35,11 @@ function asyncOperation1() {
       console.log('Error:', error.message);
     }
   }
+
+performOperations()
+
+
+
 
 
 

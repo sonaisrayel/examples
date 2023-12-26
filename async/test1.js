@@ -1,3 +1,4 @@
+
 function fetchDataFromAPI(url) {
     return fetch(url)
       .then(response => {
@@ -7,13 +8,12 @@ function fetchDataFromAPI(url) {
         return response.json();
       });
   }
-  
+
   function fetchMultipleAPIs(apiUrls) {
     const promises = apiUrls.map(url => fetchDataFromAPI(url));
     return Promise.all(promises);
   }
-  
-  // Example usage:
+
   const apiUrls = [
     'https://jsonplaceholder.typicode.com/posts/4',
     'https://jsonplaceholder.typicode.com/posts/5',
@@ -21,8 +21,8 @@ function fetchDataFromAPI(url) {
   ];
 
 
- 
-  
+
+
 //   fetchMultipleAPIs(apiUrls)
 //     .then(results => {
 //       console.log('Combined Results:', results);
@@ -30,6 +30,8 @@ function fetchDataFromAPI(url) {
 //     .catch(error => {
 //       console.log('Error:', error.message);
 //     });
+
+
 
 (async () => {
     try {
@@ -39,4 +41,3 @@ function fetchDataFromAPI(url) {
       console.log('Error:', error.message);
     }
   })();
-  
